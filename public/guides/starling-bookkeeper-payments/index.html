@@ -4,17 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Why can't my bookkeeper make payments from Starling? — Nodpay</title>
-<meta name="description" content="Starling Business accounts only let directors and PSCs make payments — there's no bookkeeper or delegate role. Here's why, what people try instead, and how to fix payroll without changing banks.">
+<meta name="description" content="Starling Business accounts only let directors and PSCs make payments — there's no bookkeeper or delegate payment role. What access Starling does offer, why its bulk payments feature doesn't fix delegation, the workarounds people try, and how to keep Starling and still delegate payroll.">
 <link rel="canonical" href="https://nodpay.co.uk/guides/starling-bookkeeper-payments/">
 <meta property="og:title" content="Why can't my bookkeeper make payments from Starling?">
-<meta property="og:description" content="Starling has no delegate payment role. What people try, why it goes wrong, and how to keep Starling and still delegate payroll.">
+<meta property="og:description" content="Starling has no delegate payment role. What access exists, what people try, why it goes wrong, and how to keep Starling and still delegate payroll.">
 <meta property="og:url" content="https://nodpay.co.uk/guides/starling-bookkeeper-payments/">
 <meta property="og:type" content="article">
 <meta name="theme-color" content="#F6F8F7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0A1410" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='%230E7C52'/%3E%3C/svg%3E">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"Why can't my bookkeeper make payments from our Starling business account?","description":"Starling Business accounts only give payment access to directors and PSCs. Why that is, the workarounds people try, and how to delegate payroll without surrendering control or changing banks.","author":{"@type":"Organization","name":"Nodpay"},"publisher":{"@type":"Organization","name":"Apexx Apps"},"mainEntityOfPage":"https://nodpay.co.uk/guides/starling-bookkeeper-payments/","datePublished":"2026-08-27"}
+{"@context":"https://schema.org","@graph":[
+{"@type":"Article","headline":"Why can't my bookkeeper make payments from our Starling business account?","description":"Starling Business accounts only give payment access to directors and PSCs. What access Starling does offer, why its bulk payments feature doesn't solve delegation, the workarounds people try, and how to delegate payroll without surrendering control or changing banks.","author":{"@type":"Organization","name":"Nodpay"},"publisher":{"@type":"Organization","name":"Apexx Apps"},"mainEntityOfPage":"https://nodpay.co.uk/guides/starling-bookkeeper-payments/","datePublished":"2026-08-27","dateModified":"2026-08-27"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Can my accountant or bookkeeper view my Starling business account?","acceptedAnswer":{"@type":"Answer","text":"Starling offers a view-only form of access for business accounts, which suits reconciliation and bookkeeping visibility. But view-only is exactly that: it cannot prepare, schedule or make payments — payment authority stays with directors and PSCs."}},
+{"@type":"Question","name":"Does Starling Business support payment approval workflows (maker-checker)?","acceptedAnswer":{"@type":"Answer","text":"No. There is no prepare-then-approve workflow inside Starling Business: whoever makes a payment must be a director or PSC with full payment authority, and payments are made by that one person end to end. Products like Nodpay add the maker-checker layer on top — the bookkeeper prepares and checks, the director approves."}},
+{"@type":"Question","name":"Doesn't Starling's bulk payments feature solve payroll?","acceptedAnswer":{"@type":"Answer","text":"Starling's bulk payments feature lets you upload a payments file (CSV and similar formats), but only directors can use it — so the delegation problem is unchanged, and there is no review-and-approve step. It removes retyping, not the director from the process."}},
+{"@type":"Question","name":"Is Nodpay a bank or an e-money wallet?","acceptedAnswer":{"@type":"Answer","text":"Neither. Your payroll money stays in your own Starling account until the director approves, then goes directly from your account to your team's. Nodpay never takes custody of funds. Payments are initiated over Open Banking by an FCA-authorised payment initiation provider."}}
+]}]}
 </script>
 <style>
   :root{
@@ -36,13 +43,18 @@
   .wordmark .dot{color:var(--nod)}
   article{padding:16px 0 40px}
   h1{font-size:clamp(1.8rem,4.5vw,2.5rem);line-height:1.15;letter-spacing:-.02em;text-wrap:balance;margin:0 0 14px}
-  h2{font-size:1.25rem;letter-spacing:-.01em;margin:34px 0 8px}
+  h2{font-size:1.3rem;letter-spacing:-.01em;margin:36px 0 8px}
+  h3{font-size:1.05rem;margin:22px 0 6px}
   p{margin:0 0 16px}
   .lede{font-size:1.1rem;color:var(--ink-soft)}
   .callout{background:var(--mint);border-radius:16px;padding:18px 20px;margin:24px 0}
   .callout p{margin:0}
-  ul{margin:0 0 16px;padding-left:22px}
+  ul,ol{margin:0 0 16px;padding-left:22px}
   li{margin-bottom:8px}
+  table{width:100%;border-collapse:collapse;margin:0 0 16px;font-size:.95rem}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+  .tablewrap{overflow-x:auto}
   .cta{display:inline-block;background:var(--nod);color:var(--nod-ink);font-weight:600;border-radius:13px;padding:14px 26px;text-decoration:none;margin-top:6px}
   .cta:hover{background:var(--nod-bright)}
   footer{border-top:1px solid var(--line);padding:28px 0 48px;font-size:.85rem;color:var(--ink-soft)}
@@ -53,32 +65,70 @@
   <nav><a class="wordmark" href="/">nodpay<span class="dot">.</span></a><a href="/#pilot">Join the pilot</a></nav>
   <article>
     <h1>Why can't my bookkeeper make payments from our Starling business account?</h1>
-    <p class="lede">Short answer: because Starling doesn't have a role for them. Business accounts give full access to directors and people with significant control — and nobody else. There's no bookkeeper seat, no payment-preparer role, no approval workflow. If payroll needs paying, a director does it.</p>
+    <p class="lede">Short answer: because Starling doesn't have a role for them. Business accounts give payment authority to directors and people with significant control — and nobody else. There's no bookkeeper seat, no payment-preparer role, no approve-this-for-me workflow. If payroll needs paying, a director pays it.</p>
+
+    <h2>What access Starling Business actually offers</h2>
+    <p>To be precise about it, because the details matter:</p>
+    <ul>
+      <li><strong>Directors and PSCs</strong> get full access — including payments. A business account can have more than one director on it, each with their own login.</li>
+      <li><strong>View-only access</strong> exists — useful for giving an accountant or bookkeeper visibility for reconciliation. But view-only is exactly that: it can see transactions; it cannot prepare, schedule or make a payment.</li>
+      <li><strong>That's the list.</strong> There is no delegate payment role, no spending-limited team member, and no maker-checker approval flow where one person prepares and another approves.</li>
+    </ul>
+    <p>So the common situation — an accounts person or external bookkeeper runs payroll in Xero, and payday arrives — always ends the same way: a director logs into Starling and makes the payments personally.</p>
+
+    <h2>Doesn't Starling's bulk payments feature fix this?</h2>
+    <p>Not the part that hurts. Starling's bulk payments feature lets you upload a payments file (CSV and similar formats) instead of keying payments one by one — genuinely useful if the <em>director</em> is doing payroll. But only directors can use it, so the delegation problem is untouched, and there's no review step between "file uploaded" and "money gone". It removes retyping; it doesn't remove <em>you</em>.</p>
 
     <h2>Why Starling works this way</h2>
-    <p>It's a deliberate security position, and it's not unreasonable: most payment fraud against small companies involves someone other than the owner touching the bank. By keeping payment authority locked to directors, Starling keeps the blast radius small. The trouble is that the same rule ignores how real companies run — where an accounts person, finance manager or external bookkeeper prepares payroll, and the director's only sensible job is a final look and a yes.</p>
+    <p>It's a deliberate security stance, and it's not unreasonable. A large share of payment fraud against small companies involves someone other than the owner having bank access — a compromised employee login, a rogue insider, a social-engineered assistant. By welding payment authority to directors, Starling keeps the blast radius small and the accountability crisp. The cost is that the rule ignores how real companies divide labour: preparation is a job you hire for; approval is a responsibility you keep. Starling's model has no way to express that split.</p>
 
-    <h2>What people try instead (and why it goes wrong)</h2>
-    <ul>
-      <li><strong>Sharing the director's login or phone.</strong> Breaks Starling's terms, destroys the audit trail, and hands unrestricted payment power to someone you only meant to give payroll duty. This is the workaround fraud investigators find at the bottom of most horror stories.</li>
-      <li><strong>The director does payroll manually.</strong> The default. Every payday, someone who delegated payroll re-enters the process anyway — retyping amounts on a Friday, or fiddling with Starling's bulk-payment CSV. Works, and everyone quietly resents it.</li>
-      <li><strong>Changing banks.</strong> Some banks offer delegate roles — but if you like Starling (many do), moving your banking to fix one workflow is a big hammer for a small nail.</li>
-      <li><strong>Prefunded payroll wallets.</strong> Some payment platforms have the company top up an e-money account the bookkeeper can pay from. It works, but your payroll money now sits outside your bank, and the subscriptions typically run £25–£50 a month per company.</li>
-    </ul>
+    <h2>The workarounds people try — an honest autopsy</h2>
+    <h3>1. Sharing the director's login or handing over the phone</h3>
+    <p>The most common and the worst. It breaches Starling's terms, destroys the audit trail (every action looks like the director's), and hands unrestricted payment power to someone you only meant to give payroll duty. When invoice-fraud stories end in tears, shared credentials are usually in the first paragraph.</p>
+    <h3>2. The director just does it</h3>
+    <p>The default. Every payday, the person who delegated payroll re-enters the process anyway — checking a spreadsheet against Xero, retyping net pay figures on a Friday, or wrangling the bulk-payment CSV. It works. It's also the definition of delegation failing.</p>
+    <h3>3. Changing banks</h3>
+    <p>Some banks offer delegate roles and approval workflows. But if you chose Starling for good reasons — and plenty of businesses genuinely like it — moving your entire banking relationship to fix one workflow is a big hammer for a small nail. You shouldn't have to choose between your bank and your org chart.</p>
+    <h3>4. Prefunded payroll wallets</h3>
+    <p>Several payments platforms solve delegation by having the company top up an e-money account, which the bookkeeper can then pay people from under an approval workflow. This genuinely works — but your payroll money now sits outside your bank in a safeguarded wallet, there's a pre-funding step to remember every month, and subscriptions typically run £25–£50 per company per month.</p>
 
     <h2>The fix: split the authority, not the bank account</h2>
-    <p>The organisational model companies actually want isn't "give the bookkeeper bank access" — it's a split: <strong>the finance person gets authority to prepare; the director keeps authority to approve.</strong> Starling's restriction stays intact — nobody but you can move money — but the work stops boomeranging back to your desk.</p>
-    <div class="callout"><p><strong>That's what Nodpay does.</strong> Your bookkeeper pulls the pay run straight from Xero Payroll, checks it in Nodpay — every employee matched to your saved Starling payees, every change from last month flagged — signs it off and sets the payment date. On the day, you get a link, review one clean screen, and give it the nod. No shared logins, no handing over your phone, no changing banks, and Nodpay never holds your money.</p></div>
+    <p>The model companies actually want isn't "give the bookkeeper bank access". It's a clean split:</p>
+    <div class="callout"><p><strong>The finance person gets authority to prepare. The director keeps authority to approve.</strong> Starling's restriction stays fully intact — nobody but a director can move money — but the work stops boomeranging back to the director's desk.</p></div>
+    <p>That's what <a href="/">Nodpay</a> is. In practice:</p>
+    <ol>
+      <li><strong>Payroll is posted in Xero</strong> as normal — Nodpay pulls the pay run directly, nothing retyped.</li>
+      <li><strong>The bookkeeper checks it in Nodpay</strong>: every employee matched against the company's saved Starling payees, each person's pay compared with the previous run, new payees and changed bank details flagged in plain sight. Three questions, answered on one screen: right people, right amounts, right accounts.</li>
+      <li><strong>They sign it off and set the payment date.</strong> Their name goes on the check — and their job is done. Nobody chases the director; the calendar does that.</li>
+      <li><strong>On payday, the director gets the nod.</strong> One clean screen — total, people, anything unusual — and one tap, secured by their own bank's authorisation. No app to install, no password to remember.</li>
+      <li><strong>Everyone's paid, and the receipt files itself</strong> — who checked, who approved, when, and the bank's own confirmation per payment.</li>
+    </ol>
+    <p>No shared logins. No handing over a phone. No changing banks. No pre-funded wallet — the money stays in your Starling account until the moment of approval, then goes straight to your team.</p>
 
-    <h2>What it costs</h2>
-    <p>£2 per pay run plus 20p per employee — no subscription, no tiers, no contract. A 12-person payroll is about £4.40 a payday; 30 people is £8.</p>
+    <h2>Comparing the options</h2>
+    <div class="tablewrap"><table>
+      <tr><th>Route</th><th>Delegation</th><th>Control</th><th>The catch</th></tr>
+      <tr><td>Share the login</td><td>Total</td><td>None</td><td>Breaks terms; no audit trail; fraud risk</td></tr>
+      <tr><td>Director does it</td><td>None</td><td>Total</td><td>Delegation has failed; Friday admin forever</td></tr>
+      <tr><td>Change banks</td><td>Yes</td><td>Yes</td><td>You lose the bank you chose</td></tr>
+      <tr><td>Prefunded wallet</td><td>Yes</td><td>Approval flows</td><td>Money leaves your bank; £25–£50/month</td></tr>
+      <tr><td>Nodpay</td><td>Prepare &amp; check</td><td>Director approves</td><td>£2 a run + 20p an employee</td></tr>
+    </table></div>
 
-    <h2>Who it's for</h2>
-    <p>UK businesses running <strong>Xero Payroll with Starling Business</strong>, where someone other than the director prepares payroll. If that's you, the frustration this page describes is probably a monthly ritual — it doesn't need to be.</p>
+    <h2>Common questions</h2>
+    <h3>Can my accountant view my Starling account?</h3>
+    <p>Yes — Starling's view-only access covers visibility for reconciliation. It just can't pay anyone, which is the gap this whole page is about.</p>
+    <h3>Does Starling support maker-checker payment approval?</h3>
+    <p>No. Payments in Starling Business are made end-to-end by one authorised person. The prepare-then-approve split has to live in a layer on top — which is exactly where Nodpay sits.</p>
+    <h3>Is Nodpay a bank or wallet?</h3>
+    <p>Neither. Nodpay never holds funds; payments are initiated over Open Banking by an FCA-authorised payment initiation provider, and money moves directly from your account to your team's.</p>
+
+    <h2>Who this is for</h2>
+    <p>UK businesses running <strong>Xero Payroll with Starling Business</strong>, where someone other than the director prepares payroll. If the ritual on this page happens at your company every month — it doesn't need to.</p>
     <p><a class="cta" href="/#pilot">Join the pilot — first pay runs are on us</a></p>
   </article>
   <footer>
-    <p>Nodpay is an Apexx Apps product, independent of Starling Bank and Xero. Payments are initiated over Open Banking by an FCA-authorised payment initiation provider; Nodpay never holds funds. · <a href="/">nodpay.co.uk</a></p>
+    <p>Nodpay is an Apexx Apps product, independent of Starling Bank and Xero. Details of Starling's features are accurate to the best of our knowledge as of August 2026 — check starlingbank.com for current specifics. Payments are initiated over Open Banking by an FCA-authorised payment initiation provider; Nodpay never holds funds. · <a href="/">nodpay.co.uk</a></p>
   </footer>
 </div>
 </body>
