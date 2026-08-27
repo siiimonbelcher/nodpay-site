@@ -31,6 +31,7 @@ approve.
 ## Links
 
 - https://nodpay.co.uk — product site
+- https://nodpay.co.uk/guides/starling-bookkeeper-payments — guide: why bookkeepers can't make payments from Starling Business, and how to delegate payroll without surrendering control
 - Contact: hello@nodpay.co.uk
 
 Nodpay is an Apexx Apps product. It is independent and not affiliated with
