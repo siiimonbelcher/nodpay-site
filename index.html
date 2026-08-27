@@ -214,23 +214,23 @@
   .anim .payrow:nth-child(4) .tick,.anim .payrow:nth-child(4) .tick::after{animation-delay:1.2s}
   @keyframes tickfill{
     0%,38%{background:transparent;border-color:var(--line)}
-    42%,88%{background:var(--nod);border-color:var(--nod)}
-    94%,100%{background:transparent;border-color:var(--line)}
+    42%,74%{background:var(--nod);border-color:var(--nod)}
+    78%,100%{background:transparent;border-color:var(--line)}
   }
   @keyframes tickmark{
-    0%,40%{opacity:0}44%,88%{opacity:1}94%,100%{opacity:0}
+    0%,40%{opacity:0}44%,74%{opacity:1}78%,100%{opacity:0}
   }
   .anim .approve{animation:press 11s infinite}
   .anim .approve .l1{animation:l1 11s infinite}
   .anim .approve .l2{animation:l2 11s infinite}
   @keyframes press{0%,30%{transform:scale(1)}33%{transform:scale(.96)}36%,100%{transform:scale(1)}}
-  @keyframes l1{0%,33%{opacity:1}38%,90%{opacity:0}96%,100%{opacity:1}}
-  @keyframes l2{0%,35%{opacity:0}40%,90%{opacity:1}96%,100%{opacity:0}}
+  @keyframes l1{0%,33%{opacity:1}38%,76%{opacity:0}82%,100%{opacity:1}}
+  @keyframes l2{0%,35%{opacity:0}40%,76%{opacity:1}82%,100%{opacity:0}}
   .anim .paid-overlay{animation:overlay 11s infinite}
   @keyframes overlay{
     0%,53%{opacity:0}
-    57%,90%{opacity:1}
-    96%,100%{opacity:0}
+    57%,93%{opacity:1}
+    99%,100%{opacity:0}
   }
   .anim .paid-tick{animation:tickpop 11s infinite}
   @keyframes tickpop{
