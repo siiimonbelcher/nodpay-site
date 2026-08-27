@@ -307,12 +307,11 @@
 
   footer{border-top:1px solid var(--line);padding:40px 0 56px;font-size:.85rem;color:var(--ink-soft)}
   footer .wrap{display:flex;flex-direction:column;gap:10px}
-  .apexx-credit{display:flex;align-items:center;gap:12px;margin-top:18px}
-  .apexx-credit span:first-child{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+  footer .wrap{align-items:center;text-align:center}
   .apexx-mark{
-    display:inline-block;width:168px;height:22px;background:var(--ink-soft);
-    -webkit-mask-image:var(--apexx-logo);-webkit-mask-repeat:no-repeat;-webkit-mask-position:left center;-webkit-mask-size:contain;
-    mask-image:var(--apexx-logo);mask-repeat:no-repeat;mask-position:left center;mask-size:contain;
+    display:inline-block;width:190px;height:25px;background:var(--ink-soft);margin-bottom:8px;
+    -webkit-mask-image:var(--apexx-logo);-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;-webkit-mask-size:contain;
+    mask-image:var(--apexx-logo);mask-repeat:no-repeat;mask-position:center;mask-size:contain;
   }
 
   /* reveals */
@@ -479,10 +478,10 @@
 
 <footer>
   <div class="wrap">
+    <span class="apexx-mark" role="img" aria-label="Apexx Apps"></span>
     <span class="wordmark" style="font-size:1.1rem">nodpay<span class="dot">.</span></span>
     <p>Payments are initiated over Open Banking by an FCA-authorised payment initiation provider. Your money moves directly from your bank account to your team’s — Nodpay never holds funds.</p>
     <p>Nodpay is independent and not affiliated with Starling Bank or Xero. · hello@nodpay.co.uk</p>
-    <div class="apexx-credit"><span>A product of</span><span class="apexx-mark" role="img" aria-label="Apexx Apps"></span></div>
   </div>
 </footer>
 
