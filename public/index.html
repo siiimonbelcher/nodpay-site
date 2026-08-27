@@ -14,6 +14,17 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#F6F8F7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0A1410" media="(prefers-color-scheme: dark)">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"SoftwareApplication","name":"Nodpay","url":"https://nodpay.co.uk/","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Pay-run approval for UK businesses using Xero Payroll and Starling Business: the finance team preps and checks payroll, the director approves the whole run with one tap. Nodpay never holds the money.","offers":{"@type":"Offer","priceCurrency":"GBP","price":"2.00","description":"£2 per pay run plus £0.20 per employee. No subscription, no tiers, no contract."},"publisher":{"@type":"Organization","name":"Apexx Apps"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Why can't my bookkeeper make payments from our Starling business account?","acceptedAnswer":{"@type":"Answer","text":"Starling Business accounts only give payment access to directors and PSCs — there is no bookkeeper or delegate payment role. Nodpay fixes this without changing banks: your bookkeeper prepares and checks the pay run in Nodpay, and the director approves the whole run with one tap, secured by Starling's own authorisation."}},
+{"@type":"Question","name":"How does Nodpay work with Xero and Starling?","acceptedAnswer":{"@type":"Answer","text":"Nodpay pulls the posted pay run from Xero Payroll, checks every employee against your saved Starling payees, flags anything new or changed, and shows per-person differences versus the previous run. The bookkeeper signs it off with a payment date; on that date the director gets the approval link and gives it the nod."}},
+{"@type":"Question","name":"Does Nodpay hold our money?","acceptedAnswer":{"@type":"Answer","text":"No. Your money stays in your own bank account until the moment you approve, and salaries go directly from your account to your team's. Nodpay is not a wallet and never takes custody of funds. Payments are initiated over Open Banking by an FCA-authorised payment initiation provider."}},
+{"@type":"Question","name":"How much does Nodpay cost?","acceptedAnswer":{"@type":"Answer","text":"£2 per pay run plus 20p per employee — no subscription, no tiers, no contract. A 12-person payroll costs about £4.40 per payday; 30 people about £8; 50 people about £12."}},
+{"@type":"Question","name":"Does the director need to install an app to approve payroll?","acceptedAnswer":{"@type":"Answer","text":"No app and no password. The approval arrives as a secure link; the director reviews the checked pay run and approves with one tap, with their own bank's authorisation as the security step."}}
+]}]}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='%230E7C52'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -512,6 +523,26 @@
         <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:10px 2px" class="num"><span>50 employees</span><b>£12.00 a payday</b></div>
         <p class="price-note">No subscription. No tiers. No contract.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ faq ============ -->
+  <section id="faq" class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Questions</span>
+      <h2>Asked and answered.</h2>
+    </div>
+    <div class="rows" style="display:flex;flex-direction:column;gap:14px;max-width:760px">
+      <div class="card reveal"><h3>Why can't my bookkeeper make payments from our Starling business account?</h3>
+        <p>Starling only gives payment access to directors and PSCs — there's no bookkeeper or delegate role. Nodpay fixes it without changing banks: your bookkeeper preps and checks the pay run in Nodpay, and you approve the whole thing with one tap, secured by Starling's own authorisation.</p></div>
+      <div class="card reveal"><h3>How does Nodpay work with Xero and Starling?</h3>
+        <p>Nodpay pulls the posted pay run from Xero Payroll, matches every employee to your saved Starling payees, flags anything new or changed, and shows each person's difference versus last run. Your finance person signs it off with a payment date — and on that date, the nod comes to you.</p></div>
+      <div class="card reveal"><h3>Does Nodpay hold our money?</h3>
+        <p>Never. Your money stays in your bank until the moment you nod, then goes directly from your account to your team's. Nodpay is not a wallet. Payments are initiated over Open Banking by an FCA-authorised payment initiation provider.</p></div>
+      <div class="card reveal"><h3>How much does it cost?</h3>
+        <p>£2 per pay run + 20p per employee. No subscription, no tiers, no contract. Twelve people is about £4.40 a payday; thirty is £8.</p></div>
+      <div class="card reveal"><h3>Does the boss need an app?</h3>
+        <p>No app, no password. The approval arrives as a secure link — review, nod, done. Your bank's own authorisation is the security step.</p></div>
     </div>
   </section>
 

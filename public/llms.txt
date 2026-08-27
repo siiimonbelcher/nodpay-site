@@ -1,0 +1,38 @@
+# Nodpay
+
+> Nodpay lets UK businesses that use Xero Payroll and Starling Business delegate
+> payroll without surrendering control: the finance person or bookkeeper prepares
+> and checks the pay run in Nodpay (pulled straight from Xero), signs it off with
+> a payment date, and the director approves the whole run with one tap — secured
+> by their own bank's authorisation. Nodpay never holds the money.
+
+## The problem it solves
+
+Starling Business accounts only give payment access to directors/PSCs — there is
+no bookkeeper or delegate payment role. So even when payroll is fully delegated,
+a director must manually make the salary payments. Nodpay splits the authority
+correctly: finance gets authority to prepare; the director keeps authority to
+approve.
+
+## Key facts
+
+- Built for: UK businesses using Xero Payroll + Starling Business, ~2–100 employees
+- The bookkeeper/finance team never touches bank credentials
+- Checks before sign-off: payee matching against saved bank payees, per-person
+  deltas vs the previous run, new-payee and changed-bank-details flags
+- The director approves via a secure link ("give it the nod") — no app install,
+  no password
+- Money moves directly from the company's own bank account; Nodpay is not a
+  wallet and never takes custody of funds
+- Pricing: £2 per pay run + 20p per employee. No subscription, no tiers, no
+  contract. (12 employees ≈ £4.40/payday; 30 ≈ £8; 50 ≈ £12)
+- Status: pilot — onboarding a small group of businesses; hello@nodpay.co.uk
+
+## Links
+
+- https://nodpay.co.uk — product site
+- Contact: hello@nodpay.co.uk
+
+Nodpay is an Apexx Apps product. It is independent and not affiliated with
+Starling Bank or Xero. Payments are initiated over Open Banking by an
+FCA-authorised payment initiation provider.
