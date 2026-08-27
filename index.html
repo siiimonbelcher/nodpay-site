@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nodpay — Payroll, on the nod.</title>
+<meta name="description" content="Your bookkeeper preps the pay run from Xero. You approve it in one tap from your own bank. No subscription — pence per payment.">
+<link rel="canonical" href="https://nodpay.co.uk/">
+<meta property="og:title" content="Nodpay — Payroll, on the nod.">
+<meta property="og:description" content="Pay runs prepared by your bookkeeper, approved by you in one tap, paid from your own bank account. No monthly fee.">
+<meta property="og:url" content="https://nodpay.co.uk/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F6F8F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A1410" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='42' fill='%230E7C52'/%3E%3C/svg%3E">
+</head>
+<body>
+<style>
+  /* ============ tokens ============ */
+  :root{
+    --paper:#F6F8F7;
+    --card:#FFFFFF;
+    --ink:#0C1F1A;
+    --ink-soft:#4A5F56;
+    --line:#DDE6E1;
+    --nod:#0E7C52;
+    --nod-bright:#12925F;
+    --nod-ink:#FFFFFF;
+    --mint:#E4F1EA;
+    --mint-deep:#CBE5D8;
+    --amber-bg:#F7ECD3;
+    --amber-ink:#7D5410;
+    --paid:#149A64;
+    --shadow:0 18px 50px -18px rgba(12,31,26,.22);
+    --shadow-soft:0 8px 26px -12px rgba(12,31,26,.14);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0A1410;
+      --card:#111E18;
+      --ink:#E9F2EC;
+      --ink-soft:#9DB3A7;
+      --line:#243830;
+      --nod:#2FBE86;
+      --nod-bright:#3BD497;
+      --nod-ink:#06130D;
+      --mint:#152820;
+      --mint-deep:#1D3529;
+      --amber-bg:#2C2413;
+      --amber-ink:#E7C578;
+      --paid:#3BD497;
+      --shadow:0 18px 50px -18px rgba(0,0,0,.6);
+      --shadow-soft:0 8px 26px -12px rgba(0,0,0,.45);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0A1410;
+    --card:#111E18;
+    --ink:#E9F2EC;
+    --ink-soft:#9DB3A7;
+    --line:#243830;
+    --nod:#2FBE86;
+    --nod-bright:#3BD497;
+    --nod-ink:#06130D;
+    --mint:#152820;
+    --mint-deep:#1D3529;
+    --amber-bg:#2C2413;
+    --amber-ink:#E7C578;
+    --paid:#3BD497;
+    --shadow:0 18px 50px -18px rgba(0,0,0,.6);
+    --shadow-soft:0 8px 26px -12px rgba(0,0,0,.45);
+  }
+
+  /* ============ base ============ */
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Avenir Next','Avenir','Nunito Sans',Seravek,'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--nod);text-decoration:none}
+  a:hover{text-decoration:underline}
+  :focus-visible{outline:2px solid var(--nod);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+
+  h1,h2,h3{line-height:1.12;margin:0;text-wrap:balance;font-weight:700;letter-spacing:-.015em}
+  h1{font-size:clamp(2.4rem,5.4vw,3.9rem)}
+  h2{font-size:clamp(1.7rem,3.4vw,2.4rem)}
+  h3{font-size:1.12rem;letter-spacing:-.005em}
+  p{margin:0}
+  .eyebrow{
+    font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--nod);
+  }
+  .sub{color:var(--ink-soft);max-width:34em}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ============ nav ============ */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+  .wordmark{font-size:1.45rem;font-weight:700;letter-spacing:-.02em;color:var(--ink);display:inline-flex;align-items:baseline}
+  .wordmark .dot{color:var(--nod);transition:transform .3s ease;display:inline-block;transform-origin:50% 80%}
+  .wordmark:hover{text-decoration:none}
+  .wordmark:hover .dot{transform:translateY(-4px)}
+  .nav-links{display:flex;gap:26px;align-items:center;font-size:.95rem;font-weight:500}
+  .nav-links a{color:var(--ink-soft)}
+  .nav-links a:hover{color:var(--ink);text-decoration:none}
+
+  /* buttons — the primary one nods on hover */
+  .btn{
+    display:inline-block;border:none;cursor:pointer;font:inherit;font-weight:600;
+    padding:14px 26px;border-radius:14px;transition:transform .18s ease,background .18s ease;
+  }
+  .btn-primary{background:var(--nod);color:var(--nod-ink)}
+  .btn-primary:hover{background:var(--nod-bright);animation:nod .5s ease;text-decoration:none}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--nod);color:var(--nod);text-decoration:none}
+  .btn-sm{padding:10px 18px;border-radius:11px;font-size:.92rem}
+  @keyframes nod{
+    0%{transform:rotate(0)}30%{transform:rotate(2.4deg) translateY(2px)}
+    60%{transform:rotate(-1.2deg)}100%{transform:rotate(0)}
+  }
+
+  /* ============ hero ============ */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:52px 0 88px}
+  .hero-copy{display:flex;flex-direction:column;gap:22px}
+  .hero .sub{font-size:1.14rem}
+  .cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:6px}
+  .cta-note{font-size:.9rem;color:var(--ink-soft)}
+  .hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  .badge{
+    font-size:.8rem;font-weight:600;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;
+  }
+
+  /* ============ phone mock ============ */
+  .stage{display:flex;justify-content:center}
+  .phone{
+    width:318px;background:var(--card);border:1px solid var(--line);border-radius:38px;
+    padding:14px;box-shadow:var(--shadow);
+  }
+  .screen{
+    background:var(--paper);border-radius:26px;padding:20px 18px 18px;overflow:hidden;position:relative;
+    min-height:472px;display:flex;flex-direction:column;gap:14px;
+  }
+  .app-top{display:flex;justify-content:space-between;align-items:center}
+  .app-brand{font-weight:700;font-size:.95rem;letter-spacing:-.01em}
+  .app-brand .dot{color:var(--nod)}
+  .app-time{font-size:.78rem;color:var(--ink-soft)}
+  .run-head{display:flex;flex-direction:column;gap:2px}
+  .run-title{font-size:.86rem;font-weight:600;color:var(--ink-soft)}
+  .run-amount{font-size:2rem;font-weight:700;letter-spacing:-.02em}
+  .run-meta{font-size:.8rem;color:var(--ink-soft)}
+  .chip{
+    align-self:flex-start;font-size:.74rem;font-weight:600;border-radius:999px;padding:5px 12px;
+    background:var(--amber-bg);color:var(--amber-ink);
+  }
+  .rows{display:flex;flex-direction:column;gap:8px}
+  .payrow{
+    display:flex;align-items:center;gap:10px;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;padding:10px 12px;
+  }
+  .payrow .name{font-size:.88rem;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .payrow .amt{font-size:.88rem;font-weight:600}
+  .tick{
+    width:22px;height:22px;border-radius:50%;flex-shrink:0;position:relative;
+    border:1.5px solid var(--line);transition:background .3s;
+  }
+  .tick::after{
+    content:"";position:absolute;left:6px;top:3px;width:6px;height:11px;
+    border:solid var(--nod-ink);border-width:0 2px 2px 0;transform:rotate(45deg);opacity:0;
+  }
+  .approve{
+    margin-top:auto;border:none;font:inherit;font-weight:600;font-size:.98rem;
+    background:var(--nod);color:var(--nod-ink);border-radius:14px;padding:14px;position:relative;overflow:hidden;
+  }
+  .approve .l1,.approve .l2{display:block;transition:opacity .3s}
+  .approve .l2{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0}
+  .paid-banner{
+    position:absolute;left:14px;right:14px;bottom:14px;background:var(--paid);color:var(--nod-ink);
+    border-radius:14px;padding:13px 16px;font-weight:600;font-size:.92rem;
+    display:flex;justify-content:space-between;align-items:center;
+    transform:translateY(130%);
+  }
+  .auth-note{font-size:.72rem;color:var(--ink-soft);text-align:center}
+
+  /* loop: 11s shared timeline */
+  .anim .tick{animation:tickfill 11s infinite}
+  .anim .tick::after{animation:tickmark 11s infinite}
+  .anim .payrow:nth-child(1) .tick,.anim .payrow:nth-child(1) .tick::after{animation-delay:.15s}
+  .anim .payrow:nth-child(2) .tick,.anim .payrow:nth-child(2) .tick::after{animation-delay:.5s}
+  .anim .payrow:nth-child(3) .tick,.anim .payrow:nth-child(3) .tick::after{animation-delay:.85s}
+  .anim .payrow:nth-child(4) .tick,.anim .payrow:nth-child(4) .tick::after{animation-delay:1.2s}
+  @keyframes tickfill{
+    0%,38%{background:transparent;border-color:var(--line)}
+    42%,88%{background:var(--nod);border-color:var(--nod)}
+    94%,100%{background:transparent;border-color:var(--line)}
+  }
+  @keyframes tickmark{
+    0%,40%{opacity:0}44%,88%{opacity:1}94%,100%{opacity:0}
+  }
+  .anim .approve{animation:press 11s infinite}
+  .anim .approve .l1{animation:l1 11s infinite}
+  .anim .approve .l2{animation:l2 11s infinite}
+  @keyframes press{0%,30%{transform:scale(1)}33%{transform:scale(.96)}36%,100%{transform:scale(1)}}
+  @keyframes l1{0%,33%{opacity:1}38%,90%{opacity:0}96%,100%{opacity:1}}
+  @keyframes l2{0%,35%{opacity:0}40%,90%{opacity:1}96%,100%{opacity:0}}
+  .anim .paid-banner{animation:banner 11s infinite}
+  @keyframes banner{
+    0%,52%{transform:translateY(130%)}
+    58%,88%{transform:translateY(0)}
+    94%,100%{transform:translateY(130%)}
+  }
+  .anim .chip{animation:chippop 11s infinite;transform-origin:left center}
+  @keyframes chippop{0%,4%{transform:scale(.85);opacity:0}8%,100%{transform:scale(1);opacity:1}}
+  @media (prefers-reduced-motion: reduce){
+    .anim *{animation:none !important}
+    .anim .tick{background:var(--nod);border-color:var(--nod)}
+    .anim .tick::after{opacity:1}
+    .btn-primary:hover{animation:none}
+    .reveal{opacity:1 !important;transform:none !important}
+  }
+
+  /* ============ sections ============ */
+  section{padding:72px 0}
+  .section-head{display:flex;flex-direction:column;gap:12px;margin-bottom:44px;max-width:38em}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;
+    display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow-soft);
+  }
+  .card p{font-size:.96rem;color:var(--ink-soft)}
+  .step-mark{
+    width:40px;height:40px;border-radius:12px;background:var(--mint);color:var(--nod);
+    display:flex;align-items:center;justify-content:center;font-weight:700;
+  }
+
+  /* safety */
+  .safety{background:var(--mint);border-radius:28px;padding:56px 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .safety .section-head{margin-bottom:0}
+  .flag-list{display:flex;flex-direction:column;gap:12px}
+  .flag{
+    background:var(--card);border:1px solid var(--mint-deep);border-radius:16px;padding:14px 18px;
+    display:flex;gap:14px;align-items:center;font-size:.93rem;
+  }
+  .flag .chip{align-self:center;flex-shrink:0}
+  .flag .ok{
+    flex-shrink:0;font-size:.74rem;font-weight:600;border-radius:999px;padding:5px 12px;
+    background:var(--mint);color:var(--nod);
+  }
+  .flag span:last-child{color:var(--ink-soft)}
+
+  /* pricing */
+  .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}
+  .price-card{position:relative}
+  .price-big{font-size:clamp(2.6rem,5vw,3.6rem);font-weight:700;letter-spacing:-.03em;line-height:1}
+  .price-big .unit{font-size:1.05rem;font-weight:600;color:var(--ink-soft);letter-spacing:0}
+  .price-them{color:var(--ink-soft)}
+  .price-them .price-big{color:var(--ink-soft);text-decoration:line-through;text-decoration-thickness:3px;text-decoration-color:var(--nod)}
+  .price-note{font-size:.88rem;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
+  .tag{
+    position:absolute;top:-12px;right:20px;background:var(--nod);color:var(--nod-ink);
+    font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    border-radius:999px;padding:5px 14px;
+  }
+
+  /* closing cta */
+  .closing{text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px;padding:96px 0}
+  .closing .sub{margin:0 auto}
+
+  footer{border-top:1px solid var(--line);padding:40px 0 56px;font-size:.85rem;color:var(--ink-soft)}
+  footer .wrap{display:flex;flex-direction:column;gap:10px}
+
+  /* reveals */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr;gap:44px;padding-bottom:64px}
+    .grid3{grid-template-columns:1fr}
+    .safety{grid-template-columns:1fr;padding:36px 26px}
+    .price-grid{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+</style>
+
+<header class="wrap">
+  <nav>
+    <a class="wordmark" href="#">nodpay<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#safety">Safety</a>
+      <a href="#pricing">Pricing</a>
+      <a class="btn btn-primary btn-sm" href="#pilot">Join the pilot</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- ============ hero ============ -->
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Payroll, approved in one tap</span>
+      <h1>Payroll, on&nbsp;the&nbsp;nod.</h1>
+      <p class="sub">Your bookkeeper preps the pay run straight from Xero. You give it the nod from wherever you are — authorised in your own banking app, paid from your own account. Nobody hands over a phone, a password, or a monthly fee.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#pilot">Join the pilot</a>
+        <a class="btn btn-ghost" href="#how">See how it works</a>
+      </div>
+      <p class="cta-note">No subscription. Pence per payment.</p>
+      <div class="hero-badges">
+        <span class="badge">Made for Starling businesses</span>
+        <span class="badge">Pulls from Xero</span>
+        <span class="badge">FCA-authorised rails</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="phone" aria-hidden="true">
+        <div class="screen anim">
+          <div class="app-top">
+            <span class="app-brand">nodpay<span class="dot">.</span></span>
+            <span class="app-time num">09:41</span>
+          </div>
+          <div class="run-head">
+            <span class="run-title">October payroll</span>
+            <span class="run-amount num">£14,302.16</span>
+            <span class="run-meta">Prepared by Sarah · 12 people</span>
+          </div>
+          <span class="chip">1 new payee — details verified</span>
+          <div class="rows">
+            <div class="payrow"><span class="tick"></span><span class="name">Amara Okafor</span><span class="amt num">£2,110.40</span></div>
+            <div class="payrow"><span class="tick"></span><span class="name">Ben Csorba</span><span class="amt num">£1,984.12</span></div>
+            <div class="payrow"><span class="tick"></span><span class="name">Chloe Dunn</span><span class="amt num">£2,455.00</span></div>
+            <div class="payrow"><span class="tick"></span><span class="name">Dev Patel · +8 more</span><span class="amt num">£7,752.64</span></div>
+          </div>
+          <button class="approve" tabindex="-1">
+            <span class="l1">Nod it through</span>
+            <span class="l2">Nodded ✓</span>
+          </button>
+          <p class="auth-note">You’ll confirm with Face ID in your Starling app</p>
+          <div class="paid-banner"><span>Everyone’s paid</span><span class="num">41 seconds</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ how it works ============ -->
+  <section id="how" class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps. One of them is yours.</h2>
+      <p class="sub">Nodpay sits between the software that knows who’s owed what, and the bank that holds the money. It never touches either’s job — it just removes the faff in the middle.</p>
+    </div>
+    <div class="grid3">
+      <div class="card reveal">
+        <div class="step-mark">1</div>
+        <h3>Xero does the typing</h3>
+        <p>Your bookkeeper pulls the latest pay run — names, amounts, references — with one click. Nothing re-keyed, nothing pasted into a CSV, nothing to get wrong.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:.1s">
+        <div class="step-mark">2</div>
+        <h3>You give the nod</h3>
+        <p>A notification lands on your phone. Total, headcount, anything unusual — then one tap, confirmed with Face&nbsp;ID in your own banking app. Thirty seconds, from anywhere.</p>
+      </div>
+      <div class="card reveal" style="transition-delay:.2s">
+        <div class="step-mark">3</div>
+        <h3>Everyone’s paid in seconds</h3>
+        <p>Faster Payments go straight from your account to your team’s — Nodpay never holds a penny. Watch each salary tick off as it lands.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ safety ============ -->
+  <section id="safety" class="wrap">
+    <div class="safety reveal">
+      <div class="section-head">
+        <span class="eyebrow">Built paranoid</span>
+        <h2>Anything unusual is impossible to miss.</h2>
+        <p class="sub">Invoice fraud lives in the small print — a changed sort code, a payee you’ve never paid. Nodpay puts the small print in lights, before the button, every time. Payments only ever go to payees you’ve approved before, and every nod is logged: who prepared it, who approved it, and when.</p>
+      </div>
+      <div class="flag-list">
+        <div class="flag"><span class="chip">New payee</span><span>First time paying Rosa Martins — added by Sarah, Tue</span></div>
+        <div class="flag"><span class="chip">Details changed</span><span>J. Smith’s sort code updated — confirm before nodding</span></div>
+        <div class="flag"><span class="ok">All familiar</span><span>Same 12 people as last month. Nothing to flag.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ pricing ============ -->
+  <section id="pricing" class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2>Pence per payment. Nothing per month.</h2>
+      <p class="sub">Payroll platforms charge every company a subscription whether it pays two people or two hundred. Nodpay only earns when you actually pay someone.</p>
+    </div>
+    <div class="price-grid">
+      <div class="card price-card price-them reveal">
+        <h3>The going rate</h3>
+        <p class="price-big num">£29<span class="unit"> /month</span></p>
+        <p>Per company. Every month. Whether you run payroll or not — and per <em>client</em> if you’re a bookkeeper with a portfolio.</p>
+        <p class="price-note">A 12-person team pays ~£348 a year before anyone gets paid.</p>
+      </div>
+      <div class="card price-card reveal" style="transition-delay:.1s">
+        <span class="tag">Nodpay</span>
+        <h3>Pay as you pay</h3>
+        <p class="price-big num">pence<span class="unit"> /payment</span></p>
+        <p>A flat few pence per salary sent. No subscription, no tiers, no per-client maths. Quiet month? Costs you nothing.</p>
+        <p class="price-note">That same 12-person team: about the price of one coffee a year.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ closing ============ -->
+  <section id="pilot" class="wrap closing">
+    <span class="eyebrow reveal">The pilot</span>
+    <h2 class="reveal">Payday should be the easiest thing you do all month.</h2>
+    <p class="sub reveal">We’re onboarding a small group of Starling-banking businesses and their bookkeepers now. First pay runs are on us.</p>
+    <div class="cta-row reveal">
+      <a class="btn btn-primary" href="mailto:hello@nodpay.co.uk">Ask for an invite</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="wordmark" style="font-size:1.1rem">nodpay<span class="dot">.</span></span>
+    <p>Payments are initiated over Open Banking by an FCA-authorised payment initiation provider. Your money moves directly from your bank account to your team’s — Nodpay never holds funds.</p>
+    <p>Nodpay is independent and not affiliated with Starling Bank or Xero. · hello@nodpay.co.uk</p>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    for (const e of entries) if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
