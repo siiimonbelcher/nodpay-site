@@ -272,6 +272,29 @@
     display:flex;align-items:center;justify-content:center;font-weight:700;
   }
 
+  /* check-screen mock */
+  .ck{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:26px 24px;max-width:660px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  .ck-title{text-align:center;font-weight:700;font-size:1.3rem;letter-spacing:-.01em;margin-bottom:2px}
+  .ck-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+  .ck-stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+  .ck-lab{font-size:.6rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
+  .ck-val{font-size:1.05rem;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .ck-sub{font-size:.66rem;color:var(--ink-soft)}
+  .ck-sub.ok{color:var(--nod)}
+  .ck-sub.warn{color:var(--amber-ink)}
+  .ck-row{display:flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:9px 12px}
+  .ck-name{flex:1;font-size:.85rem;font-weight:500}
+  .ck-acct{display:block;font-size:.62rem;font-weight:600;color:var(--nod);margin-top:1px}
+  .ck-acct code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--mint);border-radius:5px;padding:1px 6px;letter-spacing:.05em}
+  .ck-amtcol{display:flex;flex-direction:column;align-items:flex-end;gap:1px}
+  .ck-amt{font-size:.85rem;font-weight:600;font-variant-numeric:tabular-nums}
+  .ck-delta{font-size:.6rem;font-weight:600;color:var(--nod);font-variant-numeric:tabular-nums}
+  .ck-delta.warn{color:var(--amber-ink)}
+  .ck-date{border:1.5px solid var(--nod);border-radius:14px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--paper)}
+  .ck-dateval{font-size:1.1rem;font-weight:700;font-variant-numeric:tabular-nums;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:6px 14px}
+  .ck-datecheck{font-size:.66rem;font-weight:600;color:var(--nod)}
+  .ck-btn{background:var(--nod);color:var(--nod-ink);border-radius:12px;padding:12px;text-align:center;font-weight:600;font-size:.9rem}
+
   /* safety */
   .safety{background:var(--mint);border-radius:28px;padding:56px 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
   .safety .section-head{margin-bottom:0}
@@ -424,6 +447,30 @@
         <p>Faster Payments go straight from your account to your team’s. Your money stays in your bank until the moment you nod — Nodpay never holds a penny.</p>
       </div>
     </div>
+  </section>
+
+  <!-- ============ the bookkeeper's desk ============ -->
+  <section id="checking" class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The bookkeeper's desk</span>
+      <h2>Checked and signed off — before the boss sees a thing.</h2>
+      <p class="sub">Nodpay lays out the three checks — right people, right amounts, right accounts — with anything unusual in amber. Your finance person signs it off, sets the payment date, and the run sits ready for the nod.</p>
+    </div>
+    <div class="ck reveal" aria-hidden="true">
+      <div class="ck-title">Check &amp; sign off</div>
+      <div class="ck-stats">
+        <div class="ck-stat"><span class="ck-lab">Total</span><span class="ck-val">£14,302.16</span><span class="ck-sub warn">▲ £250.00 vs last run</span></div>
+        <div class="ck-stat"><span class="ck-lab">People</span><span class="ck-val">12</span><span class="ck-sub ok">✓ same team as last run</span></div>
+        <div class="ck-stat"><span class="ck-lab">Period · Monthly</span><span class="ck-val" style="font-size:.85rem">1–31 Oct 2026</span><span class="ck-sub">vs 1–30 Sep 2026</span></div>
+        <div class="ck-stat"><span class="ck-lab">Xero pays</span><span class="ck-val" style="font-size:.85rem">30 Oct 2026</span><span class="ck-sub">from the posted pay run</span></div>
+      </div>
+      <div class="ck-row"><span class="ck-name">Amara Okafor<span class="ck-acct">✓ Starling <code>•••• 4471</code></span></span><span class="ck-amtcol"><span class="ck-amt">£2,110.40</span><span class="ck-delta">same as last run</span></span></div>
+      <div class="ck-row"><span class="ck-name">Chloe Dunn<span class="ck-acct">✓ Starling <code>•••• 2210</code></span></span><span class="ck-amtcol"><span class="ck-amt">£2,455.00</span><span class="ck-delta warn">▲ £250.00 vs last run</span></span></div>
+      <div class="ck-row" style="opacity:.65"><span class="ck-name">+ 10 more<span class="ck-acct">✓ all matched · all same as last run</span></span><span class="ck-amtcol"><span class="ck-amt">£9,736.76</span></span></div>
+      <div class="ck-date"><span class="ck-lab">Payment date — when the nod is delivered</span><span class="ck-dateval">30/10/2026</span><span class="ck-datecheck">✓ matches Xero's payment date</span></div>
+      <div class="ck-btn">Sign it off — all checked</div>
+    </div>
+    <p class="note reveal" style="margin-top:14px">Then the run rests Ready — and on the payment date, Nodpay delivers the nod to the director. Nobody chases anybody.</p>
   </section>
 
   <!-- ============ safety ============ -->
