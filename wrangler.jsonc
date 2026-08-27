@@ -1,0 +1,9 @@
+{
+  "name": "nodpay-site",
+  "compatibility_date": "2026-08-01",
+  "assets": { "directory": "./public" },
+  "routes": [
+    { "pattern": "nodpay.co.uk", "custom_domain": true },
+    { "pattern": "www.nodpay.co.uk", "custom_domain": true }
+  ]
+}
