@@ -126,7 +126,7 @@
   }
 
   /* ============ hero ============ */
-  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:52px 0 88px}
+  .wrap.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:52px 28px 88px}
   .hero-copy{display:flex;flex-direction:column;gap:22px}
   .hero .sub{font-size:1.14rem}
   .cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:6px}
@@ -180,12 +180,20 @@
   }
   .approve .l1,.approve .l2{display:block;transition:opacity .3s}
   .approve .l2{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0}
-  .paid-banner{
-    position:absolute;left:14px;right:14px;bottom:14px;background:var(--paid);color:var(--nod-ink);
-    border-radius:14px;padding:13px 16px;font-weight:600;font-size:.92rem;
-    display:flex;justify-content:space-between;align-items:center;
-    transform:translateY(130%);
+  .paid-overlay{
+    position:absolute;inset:0;background:var(--paper);border-radius:26px;z-index:2;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    text-align:center;opacity:0;pointer-events:none;
   }
+  .paid-tick{width:76px;height:76px;border-radius:50%;background:var(--paid);position:relative;margin-bottom:14px}
+  .paid-tick::after{
+    content:"";position:absolute;left:27px;top:17px;width:17px;height:33px;
+    border:solid #fff;border-width:0 4.5px 4.5px 0;transform:rotate(45deg);
+  }
+  .paid-title{font-weight:700;font-size:1.22rem;letter-spacing:-.01em}
+  .paid-amount{font-size:2.1rem;font-weight:700;letter-spacing:-.02em}
+  .paid-meta{font-size:.86rem;color:var(--ink-soft)}
+  .paid-src{margin-top:16px;font-size:.74rem;color:var(--ink-soft)}
   .auth-note{font-size:.72rem;color:var(--ink-soft);text-align:center}
 
   /* loop: 11s shared timeline */
@@ -209,11 +217,25 @@
   @keyframes press{0%,30%{transform:scale(1)}33%{transform:scale(.96)}36%,100%{transform:scale(1)}}
   @keyframes l1{0%,33%{opacity:1}38%,90%{opacity:0}96%,100%{opacity:1}}
   @keyframes l2{0%,35%{opacity:0}40%,90%{opacity:1}96%,100%{opacity:0}}
-  .anim .paid-banner{animation:banner 11s infinite}
-  @keyframes banner{
-    0%,52%{transform:translateY(130%)}
-    58%,88%{transform:translateY(0)}
-    94%,100%{transform:translateY(130%)}
+  .anim .paid-overlay{animation:overlay 11s infinite}
+  @keyframes overlay{
+    0%,53%{opacity:0}
+    57%,90%{opacity:1}
+    96%,100%{opacity:0}
+  }
+  .anim .paid-tick{animation:tickpop 11s infinite}
+  @keyframes tickpop{
+    0%,54%{transform:scale(.35)}
+    59%{transform:scale(1.1)}
+    62%,100%{transform:scale(1)}
+  }
+  .anim .paid-title,.anim .paid-amount,.anim .paid-meta,.anim .paid-src{animation:riseup 11s infinite}
+  .anim .paid-amount{animation-delay:.12s}
+  .anim .paid-meta{animation-delay:.22s}
+  .anim .paid-src{animation-delay:.32s}
+  @keyframes riseup{
+    0%,55%{opacity:0;transform:translateY(10px)}
+    61%,100%{opacity:1;transform:none}
   }
   .anim .chip{animation:chippop 11s infinite;transform-origin:left center}
   @keyframes chippop{0%,4%{transform:scale(.85);opacity:0}8%,100%{transform:scale(1);opacity:1}}
@@ -226,7 +248,7 @@
   }
 
   /* ============ sections ============ */
-  section{padding:72px 0}
+  section.wrap{padding:72px 28px}
   .section-head{display:flex;flex-direction:column;gap:12px;margin-bottom:44px;max-width:38em}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .card{
@@ -269,7 +291,7 @@
   }
 
   /* closing cta */
-  .closing{text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px;padding:96px 0}
+  .wrap.closing{text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px;padding:96px 28px}
   .closing .sub{margin:0 auto}
 
   footer{border-top:1px solid var(--line);padding:40px 0 56px;font-size:.85rem;color:var(--ink-soft)}
@@ -280,7 +302,7 @@
   .reveal.in{opacity:1;transform:none}
 
   @media (max-width:880px){
-    .hero{grid-template-columns:1fr;gap:44px;padding-bottom:64px}
+    .wrap.hero{grid-template-columns:1fr;gap:44px;padding-bottom:64px}
     .grid3{grid-template-columns:1fr}
     .safety{grid-template-columns:1fr;padding:36px 26px}
     .price-grid{grid-template-columns:1fr}
@@ -343,7 +365,13 @@
             <span class="l2">Nodded ✓</span>
           </button>
           <p class="auth-note">You’ll confirm with Face ID in your Starling app</p>
-          <div class="paid-banner"><span>Everyone’s paid</span><span class="num">41 seconds</span></div>
+          <div class="paid-overlay">
+            <div class="paid-tick"></div>
+            <p class="paid-title">Everyone’s paid</p>
+            <p class="paid-amount num">£14,302.16</p>
+            <p class="paid-meta num">12 people · 41 seconds</p>
+            <p class="paid-src">Sent by Faster Payments from your Starling account</p>
+          </div>
         </div>
       </div>
     </div>
