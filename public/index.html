@@ -159,6 +159,9 @@
   .run-title{font-size:.86rem;font-weight:600;color:var(--ink-soft)}
   .run-amount{font-size:2rem;font-weight:700;letter-spacing:-.02em}
   .run-meta{font-size:.8rem;color:var(--ink-soft)}
+  .mprov{font-size:.76rem;color:var(--ink-soft);font-weight:500}
+  .mprov b{color:var(--ink)}
+  .mprov .mk{color:var(--nod);font-weight:700}
   .chip{
     align-self:flex-start;font-size:.74rem;font-weight:600;border-radius:999px;padding:5px 12px;
     background:var(--amber-bg);color:var(--amber-ink);
@@ -176,7 +179,7 @@
   }
   .tick::after{
     content:"";position:absolute;left:6px;top:3px;width:6px;height:11px;
-    border:solid var(--nod-ink);border-width:0 2px 2px 0;transform:rotate(45deg);opacity:0;
+    border:solid var(--nod);border-width:0 2px 2px 0;transform:rotate(45deg);opacity:0;
   }
   .approve{
     margin-top:auto;border:none;font:inherit;font-weight:600;font-size:.98rem;
@@ -218,7 +221,7 @@
   .anim .payrow:nth-child(4) .tick,.anim .payrow:nth-child(4) .tick::after{animation-delay:1.2s}
   @keyframes tickfill{
     0%,12%{background:transparent;border-color:var(--line)}
-    16%,74%{background:var(--nod);border-color:var(--nod)}
+    16%,74%{background:var(--mint);border-color:var(--nod)}
     78%,100%{background:transparent;border-color:var(--line)}
   }
   @keyframes tickmark{
@@ -254,7 +257,7 @@
   @keyframes chippop{0%,4%{transform:scale(.85);opacity:0}8%,100%{transform:scale(1);opacity:1}}
   @media (prefers-reduced-motion: reduce){
     .anim *{animation:none !important}
-    .anim .tick{background:var(--nod);border-color:var(--nod)}
+    .anim .tick{background:var(--mint);border-color:var(--nod)}
     .anim .tick::after{opacity:1}
     .btn-primary:hover{animation:none}
     .reveal{opacity:1 !important;transform:none !important}
@@ -394,8 +397,10 @@
           <div class="run-head">
             <span class="run-title">October payroll</span>
             <span class="run-amount num">£14,302.16</span>
-            <span class="run-meta">Prepared by Sarah · 12 people</span>
+            <span class="run-meta">12 people</span>
           </div>
+          <div class="mprov"><span class="mk">✓</span> Posted in Xero</div>
+          <div class="mprov"><span class="mk">✓</span> Checked &amp; signed off by <b>Sarah</b></div>
           <span class="chip">1 new payee — details verified</span>
           <div class="rows">
             <div class="payrow"><span class="tick"></span><span class="name">Amara Okafor</span><span class="amt num">£2,110.40</span></div>
