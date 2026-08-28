@@ -1,10 +1,11 @@
 # Nodpay
 
-> Nodpay lets UK businesses that use Xero Payroll and Starling Business delegate
-> payroll without surrendering control: the finance person or bookkeeper prepares
-> and checks the pay run in Nodpay (pulled straight from Xero), signs it off with
-> a payment date, and the director approves the whole run with one tap — secured
-> by their own bank's authorisation. Nodpay never holds the money.
+> Nodpay lets UK businesses that bank with Starling Business delegate payroll
+> without surrendering control: the finance person or bookkeeper prepares and
+> checks the pay run in Nodpay (pulled straight from Xero Payroll, or uploaded
+> as a spreadsheet from any payroll package), signs it off with a payment date,
+> and the director approves the whole run with one tap — secured by their own
+> bank's authorisation. Nodpay never holds the money.
 
 ## The problem it solves
 
@@ -16,7 +17,10 @@ approve.
 
 ## Key facts
 
-- Built for: UK businesses using Xero Payroll + Starling Business, ~2–100 employees
+- Built for: UK businesses on Starling Business, ~2–100 employees. Xero Payroll
+  integrates directly; any other payroll package works via spreadsheet upload
+  (one row per person: name, sort code, account number, amount — template
+  provided) with the same checks and exact bank-detail matching
 - The bookkeeper/finance team never touches bank credentials
 - Checks before sign-off: payee matching against saved bank payees, per-person
   deltas vs the previous run, new-payee and changed-bank-details flags
