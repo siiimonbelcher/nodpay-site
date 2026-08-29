@@ -21,6 +21,7 @@
 {"@type":"Question","name":"Why can't my bookkeeper make payments from our Starling business account?","acceptedAnswer":{"@type":"Answer","text":"Starling Business accounts only give payment access to directors and PSCs — there is no bookkeeper or delegate payment role. Nodpay fixes this without changing banks: your bookkeeper prepares and checks the pay run in Nodpay, and the director approves the whole run with one tap, secured by Starling's own authorisation."}},
 {"@type":"Question","name":"How does Nodpay work with Xero and Starling?","acceptedAnswer":{"@type":"Answer","text":"Nodpay pulls the posted pay run from Xero Payroll, checks every employee against your saved Starling payees, flags anything new or changed, and shows per-person differences versus the previous run. The bookkeeper signs it off with a payment date; on that date the director gets the approval link and gives it the nod."}},
 {"@type":"Question","name":"Do I need Xero to use Nodpay?","acceptedAnswer":{"@type":"Answer","text":"No. Xero Payroll is the smoothest route — Nodpay pulls the posted pay run directly. On any other payroll package, you upload the pay run as a simple spreadsheet (name, sort code, account number, amount) and every check still runs, with account details matched exactly against your saved Starling payees."}},
+{"@type":"Question","name":"Can Nodpay pay suppliers as well as payroll?","acceptedAnswer":{"@type":"Answer","text":"It's built for payroll — that's the job it does properly. You can also raise a one-off payment for the same nod: whoever runs your payroll picks someone already saved as a payee in your bank, sets the amount, reference and date, and it rests until then like any pay run. It's for the odd subcontractor invoice, not a full accounts-payable system."}},
 {"@type":"Question","name":"Does Nodpay hold our money?","acceptedAnswer":{"@type":"Answer","text":"No. Your money stays in your own bank account until the moment you approve, and salaries go directly from your account to your team's. Nodpay is not a wallet and never takes custody of funds. Payments are initiated over Open Banking by an FCA-authorised payment initiation provider."}},
 {"@type":"Question","name":"How much does Nodpay cost?","acceptedAnswer":{"@type":"Answer","text":"£2 per pay run plus 20p per employee — no subscription, no tiers, no contract. A 12-person payroll costs about £4.40 per payday; 30 people about £8; 50 people about £12."}},
 {"@type":"Question","name":"Does the director need to install an app to approve payroll?","acceptedAnswer":{"@type":"Answer","text":"No app and no password. The approval arrives as a secure link; the director reviews the checked pay run and approves with one tap, with their own bank's authorisation as the security step."}}
@@ -510,12 +511,14 @@
       <div class="section-head">
         <span class="eyebrow">Built paranoid</span>
         <h2>Anything unusual is impossible to miss.</h2>
-        <p class="sub">Payroll mistakes hide in the small print — a changed sort code, a new starter, bank details you’ve never paid before. Nodpay puts the small print in lights, before the button, every time. New starter? Flagged. Bank details changed? Flagged. Identical to last month? It says so. Nothing new gets paid without being put in front of you first. And every nod is logged: who prepped it, who checked it, who approved it, and when.</p>
+        <p class="sub">Payroll mistakes hide in the small print — a changed sort code, a new starter, bank details you’ve never paid before. Nodpay puts the small print in lights, before the button, every time. New starter? Flagged. Bank details changed? Flagged. Identical to last month? It says so. Nothing new gets paid without being put in front of you first. And every nod is logged: who prepped it, who checked it, who approved it, and when &mdash; on a receipt you can open any time. Even the runs Nodpay doesn&rsquo;t pay get watched: it matches them against your bank feed and says so when the amounts don&rsquo;t line up.</p>
       </div>
       <div class="flag-list">
         <div class="flag"><span class="chip">New payee</span><span>First time paying Rosa Martins — added by Sarah, Tue</span></div>
         <div class="flag"><span class="chip">Details changed</span><span>J. Smith’s sort code updated — confirm before nodding</span></div>
         <div class="flag"><span class="ok">All familiar</span><span>Same 12 people as last month. Nothing to flag.</span></div>
+        <div class="flag"><span class="chip">Paid elsewhere</span><span>Standing order left at £242.00 — payroll says £241.73</span></div>
+        <div class="flag"><span class="ok">Seen leaving</span><span>All 12 payments matched in your bank feed. Nothing missing.</span></div>
       </div>
     </div>
   </section>
@@ -552,6 +555,8 @@
         <p>Nodpay pulls the posted pay run from Xero Payroll, matches every employee to your saved Starling payees, flags anything new or changed, and shows each person's difference versus last run. Your finance person signs it off with a payment date — and on that date, the nod comes to you.</p></div>
       <div class="card reveal"><h3>Do I need Xero to use Nodpay?</h3>
         <p>No. Xero Payroll is the smoothest route — Nodpay pulls the posted pay run directly. On any other payroll package, upload the pay run as a simple spreadsheet (name, sort code, account number, amount — there's a template) and every check still runs, with account details matched exactly against your saved Starling payees. The Starling problem isn't a Xero problem.</p></div>
+      <div class="card reveal"><h3>Can Nodpay pay suppliers as well as payroll?</h3>
+        <p>It&rsquo;s built for payroll &mdash; that&rsquo;s the job it does properly. You can also raise a one-off payment for the same nod: whoever runs your payroll picks someone <strong>already saved as a payee in your bank</strong>, sets the amount, reference and date, and it rests until then like any pay run. It&rsquo;s for the odd subcontractor invoice, not a full accounts-payable system.</p></div>
       <div class="card reveal"><h3>Does Nodpay hold our money?</h3>
         <p>Never. Your money stays in your bank until the moment you nod, then goes directly from your account to your team's. Nodpay is not a wallet. Payments are initiated over Open Banking by an FCA-authorised payment initiation provider.</p></div>
       <div class="card reveal"><h3>How much does it cost?</h3>
