@@ -41,9 +41,9 @@
   nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0}
   .wordmark{font-size:1.35rem;font-weight:700;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
   .wordmark .dot{color:var(--nod);display:inline-block;transform-origin:50% 80%}
-  .wordmark:hover .dot{animation:dotbounce .55s ease}
+  a.wordmark:hover .dot{animation:dotbounce .55s ease}
   @keyframes dotbounce{0%{transform:translateY(0)}28%{transform:translateY(-5px)}52%{transform:translateY(0)}72%{transform:translateY(-2px)}100%{transform:translateY(0)}}
-  @media (prefers-reduced-motion: reduce){.wordmark:hover .dot{animation:none}}
+  @media (prefers-reduced-motion: reduce){a.wordmark:hover .dot{animation:none}}
   article{padding:16px 0 40px}
   h1{font-size:clamp(1.8rem,4.5vw,2.5rem);line-height:1.15;letter-spacing:-.02em;text-wrap:balance;margin:0 0 14px}
   h2{font-size:1.3rem;letter-spacing:-.01em;margin:36px 0 8px}
