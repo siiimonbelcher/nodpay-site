@@ -118,9 +118,10 @@
   /* ============ nav ============ */
   nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
   .wordmark{font-size:1.45rem;font-weight:700;letter-spacing:-.02em;color:var(--ink);display:inline-flex;align-items:baseline}
-  .wordmark .dot{color:var(--nod);transition:transform .3s ease;display:inline-block;transform-origin:50% 80%}
+  .wordmark .dot,.app-brand .dot{color:var(--nod);display:inline-block;transform-origin:50% 80%}
   .wordmark:hover{text-decoration:none}
-  .wordmark:hover .dot{transform:translateY(-4px)}
+  .wordmark:hover .dot,.app-brand:hover .dot{animation:dotbounce .55s ease}
+  @keyframes dotbounce{0%{transform:translateY(0)}28%{transform:translateY(-5px)}52%{transform:translateY(0)}72%{transform:translateY(-2px)}100%{transform:translateY(0)}}
   .nav-links{display:flex;gap:26px;align-items:center;font-size:.95rem;font-weight:500}
   .nav-links a{color:var(--ink-soft)}
   .nav-links a:hover{color:var(--ink);text-decoration:none}
@@ -165,7 +166,7 @@
   }
   .app-top{display:flex;justify-content:space-between;align-items:center}
   .app-brand{font-weight:700;font-size:.95rem;letter-spacing:-.01em}
-  .app-brand .dot{color:var(--nod)}
+
   .app-time{font-size:.78rem;color:var(--ink-soft)}
   .run-head{display:flex;flex-direction:column;gap:2px}
   .run-title{font-size:.86rem;font-weight:600;color:var(--ink-soft)}
@@ -268,6 +269,7 @@
   .anim .chip{animation:chippop 11s infinite;transform-origin:left center}
   @keyframes chippop{0%,4%{transform:scale(.85);opacity:0}8%,100%{transform:scale(1);opacity:1}}
   @media (prefers-reduced-motion: reduce){
+    .wordmark:hover .dot,.app-brand:hover .dot{animation:none}
     .anim *{animation:none !important}
     .anim .tick{background:var(--mint);border-color:var(--nod)}
     .anim .tick::after{opacity:1}
